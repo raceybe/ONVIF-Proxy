@@ -280,9 +280,9 @@ install_onvif_proxy() {
 
     # Install netifaces via pip with system package override
     print_status "Installing additional Python packages..."
-    pip3 install netifaces  || {
+    pip3 install netifaces --break-system-packages --root-user-action=ignore || {
         print_warning "Failed to install netifaces via pip, trying alternative method..."
-        python3 -m pip install netifaces 
+        python3 -m pip install netifaces --break-system-packages --root-user-action=ignore
     }
 
     # Stop existing services before installation
